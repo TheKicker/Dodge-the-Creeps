@@ -31,6 +31,21 @@ func _on_MobTimer_timeout():
 	# Create a Mob instance and add it to the scene.
 	var mob = mob_scene.instance()
 	add_child(mob)
+	
+	# After a while the game gets boring, so let's make it spicy
+	# Original wait time is 0.75s
+	if score > 30:
+		# 2 mobs per second
+		$MobTimer.wait_time = 0.5
+	elif score > 45:
+		# 3 mobs per second
+		$MobTimer.wait_time = 0.333
+	elif score > 60:
+		# 4 mobs per second
+		$MobTimer.wait_time = 0.25
+	elif score > 90:
+		# Haha good luck
+		$MobTimer.wait_time = 0.1
 
 	# Set the mob's direction perpendicular to the path direction.
 	var direction = mob_spawn_location.rotation + PI / 2
